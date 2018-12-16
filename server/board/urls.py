@@ -1,7 +1,11 @@
 from django.urls import path 
 from django.contrib import admin
-from .views import index
+from . import views
 
 urlpatterns = [
-    path('', index),
+    path('', views.PostListView.as_view(), name='post_list'),
+    path('<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
+    path('write/', views.PostCreateView.as_view(), name='post_create'),
+    path('edit/<int:pk>/', views.PostUpdateView.as_view(), name='post_update'),
+    path('delete/<int:pk>/', views.PostDeleteView.as_view(), name='post_delete'),
 ]
